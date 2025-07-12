@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -12,7 +13,7 @@ import java.util.List;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
-public class solarview extends ApplicationAdapter {
+public class solarview implements Screen {
     private SpriteBatch batch;
     private int zoomLevel = 0;
     private Sprite sunSprite;
@@ -30,9 +31,15 @@ public class solarview extends ApplicationAdapter {
     private Sprite saturn;
     private Sprite uranus;
     private Sprite neptune;
+    private final SolarGame game;
   
+    public solarview(SolarGame game)
+    {
+    	this.game = game;
+    }
+    
     @Override
-    public void create() {
+    public void show() {
         batch = new SpriteBatch();
         
         planetSprites = new ArrayList<>();
@@ -70,7 +77,7 @@ public class solarview extends ApplicationAdapter {
     }
 
     @Override
-    public void render() {
+    public void render(float delta) {
     	
     	
     	Gdx.gl.glClearColor(1, 1, 1, 1);
@@ -229,6 +236,11 @@ public class solarview extends ApplicationAdapter {
 		zoomLevel--;
 		
 	}
+	
+	@Override public void resize(int width, int height) {}
+    @Override public void pause() {}
+    @Override public void resume() {}
+    @Override public void hide() {}
 
 	@Override
     public void dispose() {
@@ -241,6 +253,7 @@ public class solarview extends ApplicationAdapter {
 	private void onSunClicked() {
 	
 		System.out.println("Omg it worked");
+		game.setScreen(new InfoScreen(game, "Sun"));
 		
 	}
 }

@@ -2,6 +2,8 @@ package solar.interactive.lwjgl3;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+
+import solar.interactive.SolarGame;
 import solar.interactive.solarview;
 
 /** Launches the desktop (LWJGL3) application. */
@@ -14,7 +16,7 @@ public class Lwjgl3Launcher {
     }
 
     private static Lwjgl3Application createApplication() {
-        return new Lwjgl3Application(new solarview(), getDefaultConfiguration());
+        return new Lwjgl3Application(new SolarGame(), getDefaultConfiguration());
     }
 
     private static Lwjgl3ApplicationConfiguration getDefaultConfiguration() {
