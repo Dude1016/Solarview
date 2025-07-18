@@ -9,12 +9,11 @@ public class Star
 	private String colorSpectrum; 
 	private String currentLifeCycleStage;
 	private String description; 
-	private int solarsystemId;
 	private String name;
 	
 	
 	
-	public Star(int starId, float circumference, float surfaceTemperature, String colorSpectrum, String currentLifeCycleStage, String description, int solarsystemId, String name )
+	public Star(int starId, float circumference, float surfaceTemperature, String colorSpectrum, String currentLifeCycleStage, String description,  String name )
 	{
 			
 		this.starId = starId;
@@ -23,7 +22,6 @@ public class Star
         this.colorSpectrum = colorSpectrum;
         this.currentLifeCycleStage = currentLifeCycleStage;
         this.description = description;
-        this.solarsystemId = solarsystemId;
         this.name = name;
 		
 		
@@ -65,11 +63,6 @@ public class Star
 		return description;
 	}
 
-
-
-	public int getSolarsystemId() {
-		return solarsystemId;
-	}
 
 
 

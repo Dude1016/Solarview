@@ -7,18 +7,21 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
+import models.Star;
+
 
 public class InfoScreen implements Screen {
     private final SolarGame game;
-    private final String planetName;
+    private final Star star;
+   
 
     private SpriteBatch batch;
     private BitmapFont font;
     private ShapeRenderer shapeRenderer;
 
-    public InfoScreen(SolarGame game, String planetName) {
+    public InfoScreen(SolarGame game) {
         this.game = game;
-        this.planetName = planetName;
+        this.star = DatabaseLoader.loadStar();
     }
 
     @Override
@@ -54,11 +57,11 @@ public class InfoScreen implements Screen {
         shapeRenderer.rectLine(x1, y1, x1, y2, borderThickness);
         // Right edge
         shapeRenderer.rectLine(x2, y1, x2, y2, borderThickness);
-        
-
         shapeRenderer.end();
         
         batch.begin();
+        font.draw(batch, "circumference: " + star.getCircumference(), 50, 500);
+        font.draw(batch, "Surface temperature: " + star.getSurfaceTemperature(), 50, 460);
         
         batch.end();
 

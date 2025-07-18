@@ -253,7 +253,7 @@ public class solarview implements Screen {
 	private void onSunClicked() {
 	
 		System.out.println("Omg it worked");
-		game.setScreen(new InfoScreen(game, "Sun"));
+		game.setScreen(new InfoScreen(game));
 		
 	}
 }
