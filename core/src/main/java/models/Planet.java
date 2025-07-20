@@ -4,7 +4,7 @@ public class Planet
 {
 	private int planetId;
 	private float circumference;
-	private int weight;
+	private String weight;
 	private String satellites;
 	private float distanceFromSun;
 	private float globalTemperature;
@@ -15,7 +15,7 @@ public class Planet
 	
 	
 	
-	public Planet(int planetId, float circumference, int weight, String satellites, float distanceFromSun, float globalTemperature, boolean habitableZone, String description, int solarsystemId, String name)
+	public Planet(int planetId, float circumference, String weight, String satellites, float distanceFromSun, float globalTemperature, boolean habitableZone, String description,  String name)
 	{
 		
 		this.planetId = planetId;
@@ -26,7 +26,6 @@ public class Planet
 		this.globalTemperature = globalTemperature;
 		this.habitableZone = habitableZone;
 		this.description = description;
-		this.solarsystemId = solarsystemId;
 		this.name = name;
 		
 		
@@ -46,7 +45,7 @@ public class Planet
 
 
 
-	public int getWeight() {
+	public String getWeight() {
 		return weight;
 	}
 

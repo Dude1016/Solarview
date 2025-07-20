@@ -109,12 +109,19 @@ public class solarview implements Screen {
                 onZoomInClicked();
             } else if (zoomOutSprite.getBoundingRectangle().contains(x, y)) {
                 onZoomOutClicked();
+            } else if(mercury.getBoundingRectangle().contains(x, y)) {
+            	onMercuryClicked();
             }
         }
-    	
-    	
     }
 
+
+	private void onMercuryClicked() 
+	{
+		System.out.println("Omg it worked Mercury");
+		game.setScreen(new InfoScreen(game, 1));
+		
+	}
 
 	private void onZoomOutClicked() {
 		if(zoomLevel == 0)
@@ -252,8 +259,8 @@ public class solarview implements Screen {
 	
 	private void onSunClicked() {
 	
-		System.out.println("Omg it worked");
-		game.setScreen(new InfoScreen(game));
+		System.out.println("Omg it worked sun");
+		game.setScreen(new InfoScreen(game, 0));
 		
 	}
 }
