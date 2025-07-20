@@ -62,7 +62,7 @@ public class DatabaseLoader {
         	
             Connection conn = DriverManager.getConnection(url, user, password);
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM planet WHERE planet_id = 1"); 
+            ResultSet rs = stmt.executeQuery("SELECT * FROM planet WHERE planet_id = " + type); 
 
             if (rs.next()) {
                 int planetId = rs.getInt("planet_id");
