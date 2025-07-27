@@ -253,7 +253,131 @@ public class InfoScreen implements Screen {
 		        }
 				break;
 			case 3:
+				earthSprite.draw(batch);
+				font.draw(batch, "Circumference: " + earth.getCircumference() + " Miles", 600, 1050);
+				font.draw(batch, "Weight: " + earth.getWeight() + " Pounds", 950, 1050);
+				font.draw(batch, "satellites: " + earth.getSatellites(), 1300, 1050);
+				font.draw(batch, "Distance from sun: " + earth.getDistanceFromSun() + " AU", 600, 1000);
+				font.draw(batch, "Global Temperature: " + earth.getGlobalTemperature() + " F", 950, 1000);
+				font.draw(batch, "Is in habitable zone? " + earth.isHabitableZone(), 1300, 1000);
+				font.draw(batch, "Name of planet: " + earth.getName(), 600, 950);
+				font.draw(batch, "Description: " + earth.getDescription(), 50, 500);
 				
+				batch.end();
+				if (Gdx.input.justTouched()) {
+		            int x = Gdx.input.getX();
+		            int y = Gdx.graphics.getHeight() - Gdx.input.getY();
+	
+		            if (earthSprite.getBoundingRectangle().contains(x, y)) {
+		                game.setScreen(new solarview(game));
+		            }
+		        }
+				break;
+			case 4:
+				marsSprite.draw(batch);
+				font.draw(batch, "Circumference: " + mars.getCircumference() + " Miles", 600, 1050);
+				font.draw(batch, "Weight: " + mars.getWeight() + " Pounds", 950, 1050);
+				font.draw(batch, "satellites: " + mars.getSatellites(), 1300, 1050);
+				font.draw(batch, "Distance from sun: " + mars.getDistanceFromSun() + " AU", 600, 1000);
+				font.draw(batch, "Global Temperature: " + mars.getGlobalTemperature() + " F", 950, 1000);
+				font.draw(batch, "Is in habitable zone? " + mars.isHabitableZone(), 1300, 1000);
+				font.draw(batch, "Name of planet: " + mars.getName(), 600, 950);
+				font.draw(batch, "Description: " + mars.getDescription(), 50, 500);
+				
+				batch.end();
+				if (Gdx.input.justTouched()) {
+		            int x = Gdx.input.getX();
+		            int y = Gdx.graphics.getHeight() - Gdx.input.getY();
+	
+		            if (marsSprite.getBoundingRectangle().contains(x, y)) {
+		                game.setScreen(new solarview(game));
+		            }
+		        }
+				break;
+			case 5:
+				jupiterSprite.draw(batch);
+				font.draw(batch, "Circumference: " + jupiter.getCircumference() + " Miles", 600, 1050);
+				font.draw(batch, "Weight: " + jupiter.getWeight() + " Pounds", 950, 1050);
+				font.draw(batch, "satellites: " + jupiter.getSatellites(), 1300, 1050);
+				font.draw(batch, "Distance from sun: " + jupiter.getDistanceFromSun() + " AU", 600, 1000);
+				font.draw(batch, "Global Temperature: " + jupiter.getGlobalTemperature() + " F", 950, 1000);
+				font.draw(batch, "Is in habitable zone? " + jupiter.isHabitableZone(), 1300, 1000);
+				font.draw(batch, "Name of planet: " + jupiter.getName(), 600, 950);
+				font.draw(batch, "Description: " + jupiter.getDescription(), 50, 500);
+				
+				batch.end();
+				if (Gdx.input.justTouched()) {
+		            int x = Gdx.input.getX();
+		            int y = Gdx.graphics.getHeight() - Gdx.input.getY();
+	
+		            if (jupiterSprite.getBoundingRectangle().contains(x, y)) {
+		                game.setScreen(new solarview(game));
+		            }
+		        }
+				break;
+			case 6:
+				saturnSprite.draw(batch);
+				font.draw(batch, "Circumference: " + saturn.getCircumference() + " Miles", 600, 1050);
+				font.draw(batch, "Weight: " + saturn.getWeight() + " Pounds", 950, 1050);
+				font.draw(batch, "satellites: " + saturn.getSatellites(), 1300, 1050);
+				font.draw(batch, "Distance from sun: " + saturn.getDistanceFromSun() + " AU", 600, 1000);
+				font.draw(batch, "Global Temperature: " + saturn.getGlobalTemperature() + " F", 950, 1000);
+				font.draw(batch, "Is in habitable zone? " + saturn.isHabitableZone(), 1300, 1000);
+				font.draw(batch, "Name of planet: " + saturn.getName(), 600, 950);
+				font.draw(batch, "Description: " + saturn.getDescription(), 50, 500);
+				
+				batch.end();
+				if (Gdx.input.justTouched()) {
+		            int x = Gdx.input.getX();
+		            int y = Gdx.graphics.getHeight() - Gdx.input.getY();
+	
+		            if (saturnSprite.getBoundingRectangle().contains(x, y)) {
+		                game.setScreen(new solarview(game));
+		            }
+		        }
+				break;
+			case 7:
+				uranusSprite.draw(batch);
+				font.draw(batch, "Circumference: " + uranus.getCircumference() + " Miles", 600, 1050);
+				font.draw(batch, "Weight: " + uranus.getWeight() + " Pounds", 950, 1050);
+				font.draw(batch, "satellites: " + uranus.getSatellites(), 1300, 1050);
+				font.draw(batch, "Distance from sun: " + uranus.getDistanceFromSun() + " AU", 600, 1000);
+				font.draw(batch, "Global Temperature: " + uranus.getGlobalTemperature() + " F", 950, 1000);
+				font.draw(batch, "Is in habitable zone? " + uranus.isHabitableZone(), 1300, 1000);
+				font.draw(batch, "Name of planet: " + uranus.getName(), 600, 950);
+				font.draw(batch, "Description: " + uranus.getDescription(), 50, 500);
+				
+				batch.end();
+				if (Gdx.input.justTouched()) {
+		            int x = Gdx.input.getX();
+		            int y = Gdx.graphics.getHeight() - Gdx.input.getY();
+	
+		            if (uranusSprite.getBoundingRectangle().contains(x, y)) {
+		                game.setScreen(new solarview(game));
+		            }
+		        }
+				break;
+			case 8:
+				neptuneSprite.draw(batch);
+				font.draw(batch, "Circumference: " + neptune.getCircumference() + " Miles", 600, 1050);
+				font.draw(batch, "Weight: " + neptune.getWeight() + " Pounds", 950, 1050);
+				font.draw(batch, "satellites: " + neptune.getSatellites(), 1300, 1050);
+				font.draw(batch, "Distance from sun: " + neptune.getDistanceFromSun() + " AU", 600, 1000);
+				font.draw(batch, "Global Temperature: " + neptune.getGlobalTemperature() + " F", 950, 1000);
+				font.draw(batch, "Is in habitable zone? " + neptune.isHabitableZone(), 1300, 1000);
+				font.draw(batch, "Name of planet: " + neptune.getName(), 600, 950);
+				font.draw(batch, "Description: " + neptune.getDescription(), 50, 500);
+				
+				batch.end();
+				if (Gdx.input.justTouched()) {
+		            int x = Gdx.input.getX();
+		            int y = Gdx.graphics.getHeight() - Gdx.input.getY();
+	
+		            if (neptuneSprite.getBoundingRectangle().contains(x, y)) {
+		                game.setScreen(new solarview(game));
+		            }
+		        }
+				break;
         }
         
     }
