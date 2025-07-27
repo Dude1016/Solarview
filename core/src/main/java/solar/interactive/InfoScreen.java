@@ -18,8 +18,30 @@ public class InfoScreen implements Screen {
     private final SolarGame game;
     private Star star;
     private Planet mercury;
+    private Planet venus;
+    private Planet earth;
+    private Planet mars;
+    private Planet jupiter;
+    private Planet saturn;
+    private Planet uranus;
+    private Planet neptune;
     private Texture mercuryTexture;
+    private Texture venusTexture;
+    private Texture earthTexture;
+    private Texture marsTexture;
+    private Texture jupiterTexture;
+    private Texture saturnTexture;
+    private Texture uranusTexture;
+    private Texture neptuneTexture;
     private Sprite mercurySprite;
+    private Sprite venusSprite;
+    private Sprite earthSprite;
+    private Sprite marsSprite;
+    private Sprite jupiterSprite;
+    private Sprite saturnSprite;
+    private Sprite uranusSprite;
+    private Sprite neptuneSprite;
+    
    
     private Texture sunTexture;
     private Sprite sunSprite;
@@ -41,9 +63,27 @@ public class InfoScreen implements Screen {
     			this.mercury = DatabaseLoader.loadPlanet(type);
     			break;
     		case 2:
-    		
+    			this.venus = DatabaseLoader.loadPlanet(type);
+    			break;
+    		case 3:
+    			this.earth = DatabaseLoader.loadPlanet(type);
+    			break;
+    		case 4:
+    			this.mars = DatabaseLoader.loadPlanet(type);
+    			break;
+    		case 5:
+    			this.jupiter = DatabaseLoader.loadPlanet(type);
+    			break;
+    		case 6:
+    			this.saturn = DatabaseLoader.loadPlanet(type);
+    			break;
+    		case 7:
+    			this.uranus = DatabaseLoader.loadPlanet(type);
+    			break;
+    		case 8:
+    			this.neptune = DatabaseLoader.loadPlanet(type);
+    			break;
     	}
-    	
     	
     }
 
@@ -52,7 +92,7 @@ public class InfoScreen implements Screen {
         batch = new SpriteBatch();
         font = new BitmapFont();
         shapeRenderer = new ShapeRenderer();
-        font.setColor(Color.RED);
+        font.setColor(Color.WHITE);
         font.getData().setScale(1.5f);
         
         
@@ -69,6 +109,49 @@ public class InfoScreen implements Screen {
 				mercurySprite = new Sprite(mercuryTexture);
 				mercurySprite.setSize(350, 350);
 				mercurySprite.setPosition(40, 700);
+				break;
+			case 2:
+				venusTexture = new Texture("venus.png");
+				venusSprite = new Sprite(venusTexture);
+				venusSprite.setSize(350, 350);
+				venusSprite.setPosition(40, 700);
+				break;
+			case 3:
+				earthTexture = new Texture("earth.png");
+				earthSprite = new Sprite(earthTexture);
+				earthSprite.setSize(350, 350);
+				earthSprite.setPosition(40, 700);
+				break;
+			case 4:
+				marsTexture = new Texture("mars.png");
+				marsSprite = new Sprite(marsTexture);
+				marsSprite.setSize(350, 350);
+				marsSprite.setPosition(40, 700);
+				break;
+			case 5:
+				jupiterTexture = new Texture("jupiter.png");
+				jupiterSprite = new Sprite(jupiterTexture);
+				jupiterSprite.setSize(350, 350);
+				jupiterSprite.setPosition(40, 700);
+				break;
+			case 6:
+				saturnTexture = new Texture("saturn.png");
+				saturnSprite = new Sprite(saturnTexture);
+				saturnSprite.setSize(350, 350);
+				saturnSprite.setPosition(40, 700);
+				break;
+			case 7:
+				uranusTexture = new Texture("uranus.png");
+				uranusSprite = new Sprite(uranusTexture);
+				uranusSprite.setSize(350, 350);
+				uranusSprite.setPosition(40, 700);
+				break;
+			case 8:
+				neptuneTexture = new Texture("neptune.png");
+				neptuneSprite = new Sprite(neptuneTexture);
+				neptuneSprite.setSize(350, 350);
+				neptuneSprite.setPosition(40, 700);
+				
         }
         
     }
@@ -149,6 +232,27 @@ public class InfoScreen implements Screen {
 		        }		
 				break;
 			case 2:
+				venusSprite.draw(batch);
+				font.draw(batch, "Circumference: " + venus.getCircumference() + " Miles", 600, 1050);
+				font.draw(batch, "Weight: " + venus.getWeight() + " Pounds", 950, 1050);
+				font.draw(batch, "satellites: " + venus.getSatellites(), 1300, 1050);
+				font.draw(batch, "Distance from sun: " + venus.getDistanceFromSun() + " AU", 600, 1000);
+				font.draw(batch, "Global Temperature: " + venus.getGlobalTemperature() + " F", 950, 1000);
+				font.draw(batch, "Is in habitable zone? " + venus.isHabitableZone(), 1300, 1000);
+				font.draw(batch, "Name of planet: " + venus.getName(), 600, 950);
+				font.draw(batch, "Description: " + venus.getDescription(), 50, 500);
+				
+				batch.end();
+				if (Gdx.input.justTouched()) {
+		            int x = Gdx.input.getX();
+		            int y = Gdx.graphics.getHeight() - Gdx.input.getY();
+	
+		            if (venusSprite.getBoundingRectangle().contains(x, y)) {
+		                game.setScreen(new solarview(game));
+		            }
+		        }
+				break;
+			case 3:
 				
         }
         

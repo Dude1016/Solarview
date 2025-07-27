@@ -112,9 +112,72 @@ public class solarview implements Screen {
             } else if(mercury.getBoundingRectangle().contains(x, y)) {
             	onMercuryClicked();
             }
+              else if(venus.getBoundingRectangle().contains(x, y)) {
+            	onVenusClicked();
+            }
+              else if(earth.getBoundingRectangle().contains(x, y)) {
+              	onEarthClicked();
+            }
+              else if(mars.getBoundingRectangle().contains(x, y)) {
+              	onMarsClicked();
+            }
+              else if(jupiter.getBoundingRectangle().contains(x, y)) {
+              	onJupiterClicked();
+            }
+              else if(saturn.getBoundingRectangle().contains(x, y)) {
+              	onSaturnClicked();
+            }
+              else if(uranus.getBoundingRectangle().contains(x, y)) {
+              	onUranusClicked();
+            }
+              else if(neptune.getBoundingRectangle().contains(x, y)) {
+              	onNeptuneClicked();
+            }
         }
     }
 
+
+	private void onNeptuneClicked() {
+		System.out.println("Omg it worked Neptune");
+		game.setScreen(new InfoScreen(game, 8));
+		
+	}
+
+	private void onUranusClicked() {
+		System.out.println("Omg it worked uranus");
+		game.setScreen(new InfoScreen(game, 7));
+		
+	}
+
+	private void onSaturnClicked() {
+		System.out.println("Omg it worked Saturn");
+		game.setScreen(new InfoScreen(game, 6));
+		
+	}
+
+	private void onJupiterClicked() {
+		System.out.println("Omg it worked Jupiter");
+		game.setScreen(new InfoScreen(game, 5));
+		
+	}
+
+	private void onMarsClicked() {
+		System.out.println("Omg it worked Mars");
+		game.setScreen(new InfoScreen(game, 4));
+		
+	}
+
+	private void onEarthClicked() {
+		System.out.println("Omg it worked Earth");
+		game.setScreen(new InfoScreen(game, 3));
+		
+	}
+
+	private void onVenusClicked() {
+		System.out.println("Omg it worked Venus");
+		game.setScreen(new InfoScreen(game, 2));
+		
+	}
 
 	private void onMercuryClicked() 
 	{
