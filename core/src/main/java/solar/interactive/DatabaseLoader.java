@@ -5,8 +5,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import models.Location;
 import models.Planet;
 import models.Star;
+
 
 public class DatabaseLoader {
 
@@ -92,4 +94,39 @@ public class DatabaseLoader {
 
         return planet;
     }
+    
+    public static void saveLocation(Location location)
+    {
+    	 String url = "jdbc:mysql://localhost:3306/mydb";
+         String userDb = "root";
+         String password = "root";
+         
+         
+         try {
+             Class.forName("com.mysql.cj.jdbc.Driver");
+
+             Connection conn = DriverManager.getConnection(url, userDb, password);
+
+             // Example SQL; change column names to match your table
+             String sql = "INSERT INTO location (type, user_name) VALUES (?, ?)";
+
+             java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
+             stmt.setInt(1, location.getType());
+             stmt.setString(2, location.getUser());
+               
+             stmt.executeUpdate();
+             
+
+             stmt.close();
+             conn.close();
+
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
+         
+         
+         
+    }
+    
+    
 }

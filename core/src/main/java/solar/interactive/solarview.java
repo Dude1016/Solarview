@@ -4,13 +4,29 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+
 import java.util.List;
+
+import javax.swing.JOptionPane;
+
 import com.badlogic.gdx.utils.ScreenUtils;
+
+import models.Location;
+
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class solarview implements Screen {
@@ -31,6 +47,12 @@ public class solarview implements Screen {
     private Sprite saturn;
     private Sprite uranus;
     private Sprite neptune;
+    
+    Table table;
+    Stage stage;
+    Skin skin;
+    TextField textField;
+    private Location location;
     private final SolarGame game;
   
     public solarview(SolarGame game)
@@ -46,7 +68,6 @@ public class solarview implements Screen {
         sunTexture = new Texture("sun.png");
         zoomInTexture = new Texture("zoomin.png");
         zoomOutTexture = new Texture("zoomout.png");
-        
         
         
         sunSprite = new Sprite(sunTexture);
@@ -73,7 +94,44 @@ public class solarview implements Screen {
          zoomInSprite.getX() + zoomInSprite.getWidth() + padding,
          zoomInSprite.getY()
      );
-        
+     //-------------------------------------------------------
+      //Username logic
+     stage = new Stage();
+     skin = new Skin(Gdx.files.internal("uiskin.json"));
+     
+     Label label = new Label("Enter name:", skin);
+     textField = new TextField("", skin);
+     stage.setKeyboardFocus(textField);
+     
+     
+     textField.setTextFieldListener(new TextField.TextFieldListener() {
+    	    @Override
+    	    public void keyTyped(TextField textField, char c) {
+    	        if (c == '\n' || c == '\r') {
+    	            String input = textField.getText();
+    	            System.out.println("User typed: " + input);
+    	            location = new Location(-1, input);
+    	            int where = location.getType();
+    	            if(where != -1)
+    	            {
+    	            	
+    	            }
+    	            stage.getRoot().removeActor(table);
+    	        }
+    	    }
+    	});
+
+     
+     table = new Table();
+     table.setFillParent(true);
+     table.center();
+     table.add(label).row();
+     table.add(textField).row();
+     stage.addActor(table);
+
+     
+     Gdx.input.setInputProcessor(stage);
+     
     }
 
     @Override
@@ -83,7 +141,7 @@ public class solarview implements Screen {
     	Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
-        
+       
     	
     	batch.begin();
     	zoomInSprite.draw(batch);
@@ -97,8 +155,11 @@ public class solarview implements Screen {
     	
     	batch.end();
     	
+        stage.act(delta);
+        stage.draw();
     	
     	
+        
     	if (Gdx.input.justTouched()) {
             int x = Gdx.input.getX();
             int y = Gdx.graphics.getHeight() - Gdx.input.getY();
@@ -134,55 +195,56 @@ public class solarview implements Screen {
               	onNeptuneClicked();
             }
         }
+    	
     }
 
 
 	private void onNeptuneClicked() {
 		System.out.println("Omg it worked Neptune");
-		game.setScreen(new InfoScreen(game, 8));
+		game.setScreen(new InfoScreen(game, 8, location));
 		
 	}
 
 	private void onUranusClicked() {
 		System.out.println("Omg it worked uranus");
-		game.setScreen(new InfoScreen(game, 7));
+		game.setScreen(new InfoScreen(game, 7, location));
 		
 	}
 
 	private void onSaturnClicked() {
 		System.out.println("Omg it worked Saturn");
-		game.setScreen(new InfoScreen(game, 6));
+		game.setScreen(new InfoScreen(game, 6, location));
 		
 	}
 
 	private void onJupiterClicked() {
 		System.out.println("Omg it worked Jupiter");
-		game.setScreen(new InfoScreen(game, 5));
+		game.setScreen(new InfoScreen(game, 5, location));
 		
 	}
 
 	private void onMarsClicked() {
 		System.out.println("Omg it worked Mars");
-		game.setScreen(new InfoScreen(game, 4));
+		game.setScreen(new InfoScreen(game, 4, location));
 		
 	}
 
 	private void onEarthClicked() {
 		System.out.println("Omg it worked Earth");
-		game.setScreen(new InfoScreen(game, 3));
+		game.setScreen(new InfoScreen(game, 3, location));
 		
 	}
 
 	private void onVenusClicked() {
 		System.out.println("Omg it worked Venus");
-		game.setScreen(new InfoScreen(game, 2));
+		game.setScreen(new InfoScreen(game, 2, location));
 		
 	}
 
 	private void onMercuryClicked() 
 	{
 		System.out.println("Omg it worked Mercury");
-		game.setScreen(new InfoScreen(game, 1));
+		game.setScreen(new InfoScreen(game, 1, location));
 		
 	}
 
@@ -320,10 +382,16 @@ public class solarview implements Screen {
         zoomOutTexture.dispose();
     }
 	
+	public void disposeText()
+	{
+		stage.dispose();
+		skin.dispose();
+	}
+	
 	private void onSunClicked() {
 	
 		System.out.println("Omg it worked sun");
-		game.setScreen(new InfoScreen(game, 0));
+		game.setScreen(new InfoScreen(game, 0, location));
 		
 	}
 }

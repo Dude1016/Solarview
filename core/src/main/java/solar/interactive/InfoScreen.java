@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
+import models.Location;
 import models.Planet;
 import models.Star;
 
@@ -42,18 +43,22 @@ public class InfoScreen implements Screen {
     private Sprite uranusSprite;
     private Sprite neptuneSprite;
     
-   
+    private Location location;
     private Texture sunTexture;
     private Sprite sunSprite;
+    private Texture saveTexture;
+    private Sprite saveSprite; 
     private SpriteBatch batch;
     private BitmapFont font;
     private ShapeRenderer shapeRenderer;
     private int type;
 
-    public InfoScreen(SolarGame game, int type) 
+    public InfoScreen(SolarGame game, int type, Location location) 
     {
     	this.game = game;
     	this.type = type;
+    	this.location = location;
+    	
     	
     	switch (type) {
     		case 0:
@@ -94,6 +99,12 @@ public class InfoScreen implements Screen {
         shapeRenderer = new ShapeRenderer();
         font.setColor(Color.WHITE);
         font.getData().setScale(1.5f);
+
+        //save location sprite
+        saveTexture = new Texture("save.png");
+        saveSprite = new Sprite(saveTexture);
+        saveSprite.setSize(100, 100);
+        saveSprite.setPosition(1825, 980);
         
         
         switch (type) {
@@ -186,10 +197,23 @@ public class InfoScreen implements Screen {
         shapeRenderer.end();
         
         batch.begin();
+        // Save location sprite and logic
+        saveSprite.draw(batch);
+        if (Gdx.input.justTouched()) {
+            int x = Gdx.input.getX();
+            int y = Gdx.graphics.getHeight() - Gdx.input.getY();
+
+            if (saveSprite.getBoundingRectangle().contains(x, y)) {
+            	location.setType(type);
+                DatabaseLoader.saveLocation(location);
+            }
+        }
         
         
         
         
+        
+        //All planets and sun sprites and info
         switch (type) {
 			case 0:
 				sunSprite.draw(batch);
