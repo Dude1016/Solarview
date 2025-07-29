@@ -206,6 +206,7 @@ public class InfoScreen implements Screen {
             if (saveSprite.getBoundingRectangle().contains(x, y)) {
             	location.setType(type);
                 DatabaseLoader.saveLocation(location);
+                System.out.println("location saved");
             }
         }
         

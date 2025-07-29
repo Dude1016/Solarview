@@ -110,12 +110,19 @@ public class solarview implements Screen {
     	        if (c == '\n' || c == '\r') {
     	            String input = textField.getText();
     	            System.out.println("User typed: " + input);
-    	            location = new Location(-1, input);
-    	            int where = location.getType();
-    	            if(where != -1)
+    	            location = DatabaseLoader.loadLocation(input);
+    	            if(location == null)
+    	            {
+    	            	location = new Location(-1, input);
+    	            }
+    	            else
     	            {
     	            	
+    	            	System.out.println("laoding test worked");
+    	            	game.setScreen(new InfoScreen(game, location.getType(), location));
     	            }
+    	            
+    	           
     	            stage.getRoot().removeActor(table);
     	        }
     	    }

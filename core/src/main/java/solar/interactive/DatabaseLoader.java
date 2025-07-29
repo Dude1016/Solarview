@@ -128,5 +128,42 @@ public class DatabaseLoader {
          
     }
     
+    public static Location loadLocation(String user)
+    {
+    	Location location = null;
+    	 String url = "jdbc:mysql://localhost:3306/mydb";
+         String userdb = "root";
+         String password = "root";
+    		
+    	 try {
+         	Class.forName("com.mysql.cj.jdbc.Driver");
+         	
+             Connection conn = DriverManager.getConnection(url, userdb, password);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM location WHERE user_name = " + "'" + user + "'"); 
+
+             if (rs.next()) {
+                 int type = rs.getInt("type");
+                 String userName = rs.getString("user_name");
+               
+                location = new Location(type, userName);
+                
+               
+                 
+             }
+             
+            
+
+             rs.close();
+             stmt.close();
+             conn.close();
+
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
+    	 
+    	 return location;
+    }
+    
     
 }
