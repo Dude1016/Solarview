@@ -9,6 +9,9 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+
 
 import models.Location;
 import models.Planet;
@@ -34,6 +37,7 @@ public class InfoScreen implements Screen {
     private Texture saturnTexture;
     private Texture uranusTexture;
     private Texture neptuneTexture;
+    private Texture backTexture;
     private Sprite mercurySprite;
     private Sprite venusSprite;
     private Sprite earthSprite;
@@ -42,6 +46,7 @@ public class InfoScreen implements Screen {
     private Sprite saturnSprite;
     private Sprite uranusSprite;
     private Sprite neptuneSprite;
+    private Sprite backSprite;
     
     private Location location;
     private Texture sunTexture;
@@ -49,6 +54,7 @@ public class InfoScreen implements Screen {
     private Texture saveTexture;
     private Sprite saveSprite; 
     private SpriteBatch batch;
+    private GlyphLayout layout;
     private BitmapFont font;
     private ShapeRenderer shapeRenderer;
     private int type;
@@ -97,14 +103,21 @@ public class InfoScreen implements Screen {
         batch = new SpriteBatch();
         font = new BitmapFont();
         shapeRenderer = new ShapeRenderer();
+        layout = new GlyphLayout();
         font.setColor(Color.WHITE);
         font.getData().setScale(1.5f);
+        solarview.isLaunched = 1;
 
         //save location sprite
         saveTexture = new Texture("save.png");
         saveSprite = new Sprite(saveTexture);
         saveSprite.setSize(100, 100);
         saveSprite.setPosition(1825, 980);
+        //back texture
+        backTexture = new Texture("back.png");
+        backSprite = new Sprite(backTexture);
+        backSprite.setSize(100, 100);
+        backSprite.setPosition(425, 850);
         
         
         switch (type) {
@@ -199,6 +212,7 @@ public class InfoScreen implements Screen {
         batch.begin();
         // Save location sprite and logic
         saveSprite.draw(batch);
+        backSprite.draw(batch);
         if (Gdx.input.justTouched()) {
             int x = Gdx.input.getX();
             int y = Gdx.graphics.getHeight() - Gdx.input.getY();
@@ -223,7 +237,9 @@ public class InfoScreen implements Screen {
 		        font.draw(batch, "color Spectrum: " + star.getColorSpectrum(), 1300, 1050);
 		        font.draw(batch, "Life cycle Stage: " + star.getCurrentLifeCycleStage(), 600, 1000);
 		        font.draw(batch, "Name of star: " + star.getName(), 950, 1000);
-		        font.draw(batch, "Description: " + star.getDescription(), 50, 500);
+		        layout.setText(font, "Description: " + star.getDescription(), Color.WHITE, 800f, Align.left, true);
+		        font.draw(batch, layout, 50, 500);
+
 		        
 		        batch.end();
 		        if (Gdx.input.justTouched()) {
@@ -244,7 +260,9 @@ public class InfoScreen implements Screen {
 				font.draw(batch, "Global Temperature: " + mercury.getGlobalTemperature() + " F", 950, 1000);
 				font.draw(batch, "Is in habitable zone? " + mercury.isHabitableZone(), 1300, 1000);
 				font.draw(batch, "Name of planet: " + mercury.getName(), 600, 950);
-				font.draw(batch, "Description: " + mercury.getDescription(), 50, 500);
+				layout.setText(font, "Description: " + mercury.getDescription(), Color.WHITE, 800f, Align.left, true);
+				font.draw(batch, layout, 50, 500);
+
 				
 				batch.end();
 				if (Gdx.input.justTouched()) {
@@ -265,7 +283,8 @@ public class InfoScreen implements Screen {
 				font.draw(batch, "Global Temperature: " + venus.getGlobalTemperature() + " F", 950, 1000);
 				font.draw(batch, "Is in habitable zone? " + venus.isHabitableZone(), 1300, 1000);
 				font.draw(batch, "Name of planet: " + venus.getName(), 600, 950);
-				font.draw(batch, "Description: " + venus.getDescription(), 50, 500);
+				layout.setText(font, "Description: " + venus.getDescription(), Color.WHITE, 800f, Align.left, true);
+				font.draw(batch, layout, 50, 500);
 				
 				batch.end();
 				if (Gdx.input.justTouched()) {
@@ -286,7 +305,8 @@ public class InfoScreen implements Screen {
 				font.draw(batch, "Global Temperature: " + earth.getGlobalTemperature() + " F", 950, 1000);
 				font.draw(batch, "Is in habitable zone? " + earth.isHabitableZone(), 1300, 1000);
 				font.draw(batch, "Name of planet: " + earth.getName(), 600, 950);
-				font.draw(batch, "Description: " + earth.getDescription(), 50, 500);
+				layout.setText(font, "Description: " + earth.getDescription(), Color.WHITE, 800f, Align.left, true);
+				font.draw(batch, layout, 50, 500);
 				
 				batch.end();
 				if (Gdx.input.justTouched()) {
@@ -307,7 +327,8 @@ public class InfoScreen implements Screen {
 				font.draw(batch, "Global Temperature: " + mars.getGlobalTemperature() + " F", 950, 1000);
 				font.draw(batch, "Is in habitable zone? " + mars.isHabitableZone(), 1300, 1000);
 				font.draw(batch, "Name of planet: " + mars.getName(), 600, 950);
-				font.draw(batch, "Description: " + mars.getDescription(), 50, 500);
+				layout.setText(font, "Description: " + mars.getDescription(), Color.WHITE, 800f, Align.left, true);
+				font.draw(batch, layout, 50, 500);
 				
 				batch.end();
 				if (Gdx.input.justTouched()) {
@@ -328,7 +349,8 @@ public class InfoScreen implements Screen {
 				font.draw(batch, "Global Temperature: " + jupiter.getGlobalTemperature() + " F", 950, 1000);
 				font.draw(batch, "Is in habitable zone? " + jupiter.isHabitableZone(), 1300, 1000);
 				font.draw(batch, "Name of planet: " + jupiter.getName(), 600, 950);
-				font.draw(batch, "Description: " + jupiter.getDescription(), 50, 500);
+				layout.setText(font, "Description: " + jupiter.getDescription(), Color.WHITE, 800f, Align.left, true);
+				font.draw(batch, layout, 50, 500);
 				
 				batch.end();
 				if (Gdx.input.justTouched()) {
@@ -349,7 +371,8 @@ public class InfoScreen implements Screen {
 				font.draw(batch, "Global Temperature: " + saturn.getGlobalTemperature() + " F", 950, 1000);
 				font.draw(batch, "Is in habitable zone? " + saturn.isHabitableZone(), 1300, 1000);
 				font.draw(batch, "Name of planet: " + saturn.getName(), 600, 950);
-				font.draw(batch, "Description: " + saturn.getDescription(), 50, 500);
+				layout.setText(font, "Description: " + saturn.getDescription(), Color.WHITE, 800f, Align.left, true);
+				font.draw(batch, layout, 50, 500);
 				
 				batch.end();
 				if (Gdx.input.justTouched()) {
@@ -370,7 +393,8 @@ public class InfoScreen implements Screen {
 				font.draw(batch, "Global Temperature: " + uranus.getGlobalTemperature() + " F", 950, 1000);
 				font.draw(batch, "Is in habitable zone? " + uranus.isHabitableZone(), 1300, 1000);
 				font.draw(batch, "Name of planet: " + uranus.getName(), 600, 950);
-				font.draw(batch, "Description: " + uranus.getDescription(), 50, 500);
+				layout.setText(font, "Description: " + uranus.getDescription(), Color.WHITE, 800f, Align.left, true);
+				font.draw(batch, layout, 50, 500);
 				
 				batch.end();
 				if (Gdx.input.justTouched()) {
@@ -391,7 +415,8 @@ public class InfoScreen implements Screen {
 				font.draw(batch, "Global Temperature: " + neptune.getGlobalTemperature() + " F", 950, 1000);
 				font.draw(batch, "Is in habitable zone? " + neptune.isHabitableZone(), 1300, 1000);
 				font.draw(batch, "Name of planet: " + neptune.getName(), 600, 950);
-				font.draw(batch, "Description: " + neptune.getDescription(), 50, 500);
+				layout.setText(font, "Description: " + neptune.getDescription(), Color.WHITE, 800f, Align.left, true);
+				font.draw(batch, layout, 50, 500);
 				
 				batch.end();
 				if (Gdx.input.justTouched()) {

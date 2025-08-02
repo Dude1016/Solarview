@@ -47,6 +47,11 @@ public class solarview implements Screen {
     private Sprite saturn;
     private Sprite uranus;
     private Sprite neptune;
+    static int isLaunched;
+    private Label label;
+    private Texture backgroundTexture;
+    private Sprite backgroundSprite;
+
     
     Table table;
     Stage stage;
@@ -63,7 +68,13 @@ public class solarview implements Screen {
     @Override
     public void show() {
         batch = new SpriteBatch();
+        backgroundTexture = new Texture("background.jpg"); 
+        backgroundSprite = new Sprite(backgroundTexture);
+
         
+        backgroundSprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        backgroundSprite.setPosition(0, 0);
+
         planetSprites = new ArrayList<>();
         sunTexture = new Texture("sun.png");
         zoomInTexture = new Texture("zoomin.png");
@@ -94,39 +105,44 @@ public class solarview implements Screen {
          zoomInSprite.getX() + zoomInSprite.getWidth() + padding,
          zoomInSprite.getY()
      );
+     
      //-------------------------------------------------------
       //Username logic
-     stage = new Stage();
-     skin = new Skin(Gdx.files.internal("uiskin.json"));
+     if(isLaunched == 0)
+     {
+    	 
+	     stage = new Stage();
+	     skin = new Skin(Gdx.files.internal("uiskin.json"));
+	     
+	     label = new Label("Enter name:", skin);
+	     textField = new TextField("", skin);
+	     stage.setKeyboardFocus(textField);
+	     
+	     
+	     textField.setTextFieldListener(new TextField.TextFieldListener() {
+	    	    @Override
+	    	    public void keyTyped(TextField textField, char c) {
+	    	        if (c == '\n' || c == '\r') {
+	    	            String input = textField.getText();
+	    	            System.out.println("User typed: " + input);
+	    	            location = DatabaseLoader.loadLocation(input);
+	    	            if(location == null)
+	    	            {
+	    	            	location = new Location(-1, input);
+	    	            }
+	    	            else
+	    	            {
+	    	            	
+	    	            	System.out.println("laoding test worked");
+	    	            	game.setScreen(new InfoScreen(game, location.getType(), location));
+	    	            }
+	    	            
+	    	           
+	    	            stage.getRoot().removeActor(table);
+	    	        }
+	    	    }
+	    	});
      
-     Label label = new Label("Enter name:", skin);
-     textField = new TextField("", skin);
-     stage.setKeyboardFocus(textField);
-     
-     
-     textField.setTextFieldListener(new TextField.TextFieldListener() {
-    	    @Override
-    	    public void keyTyped(TextField textField, char c) {
-    	        if (c == '\n' || c == '\r') {
-    	            String input = textField.getText();
-    	            System.out.println("User typed: " + input);
-    	            location = DatabaseLoader.loadLocation(input);
-    	            if(location == null)
-    	            {
-    	            	location = new Location(-1, input);
-    	            }
-    	            else
-    	            {
-    	            	
-    	            	System.out.println("laoding test worked");
-    	            	game.setScreen(new InfoScreen(game, location.getType(), location));
-    	            }
-    	            
-    	           
-    	            stage.getRoot().removeActor(table);
-    	        }
-    	    }
-    	});
 
      
      table = new Table();
@@ -138,6 +154,7 @@ public class solarview implements Screen {
 
      
      Gdx.input.setInputProcessor(stage);
+     }
      
     }
 
@@ -151,6 +168,7 @@ public class solarview implements Screen {
        
     	
     	batch.begin();
+    	backgroundSprite.draw(batch);
     	zoomInSprite.draw(batch);
     	zoomOutSprite.draw(batch);
     	sunSprite.draw(batch);
@@ -162,8 +180,12 @@ public class solarview implements Screen {
     	
     	batch.end();
     	
-        stage.act(delta);
-        stage.draw();
+    	if(isLaunched == 0)
+    	{
+	        stage.act(delta);
+	        stage.draw();
+    	}
+    	
     	
     	
         
