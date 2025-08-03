@@ -247,7 +247,7 @@ public class InfoScreen implements Screen {
 		            int y = Gdx.graphics.getHeight() - Gdx.input.getY();
 	
 		            if (sunSprite.getBoundingRectangle().contains(x, y)) {
-		                game.setScreen(new solarview(game));
+		                game.setScreen(new solarview(game, location));
 		            }
 		        }
 				break;
@@ -270,7 +270,7 @@ public class InfoScreen implements Screen {
 		            int y = Gdx.graphics.getHeight() - Gdx.input.getY();
 	
 		            if (mercurySprite.getBoundingRectangle().contains(x, y)) {
-		                game.setScreen(new solarview(game));
+		                game.setScreen(new solarview(game, location));
 		            }
 		        }		
 				break;
@@ -292,7 +292,7 @@ public class InfoScreen implements Screen {
 		            int y = Gdx.graphics.getHeight() - Gdx.input.getY();
 	
 		            if (venusSprite.getBoundingRectangle().contains(x, y)) {
-		                game.setScreen(new solarview(game));
+		                game.setScreen(new solarview(game, location));
 		            }
 		        }
 				break;
@@ -314,7 +314,7 @@ public class InfoScreen implements Screen {
 		            int y = Gdx.graphics.getHeight() - Gdx.input.getY();
 	
 		            if (earthSprite.getBoundingRectangle().contains(x, y)) {
-		                game.setScreen(new solarview(game));
+		                game.setScreen(new solarview(game, location));
 		            }
 		        }
 				break;
@@ -336,7 +336,7 @@ public class InfoScreen implements Screen {
 		            int y = Gdx.graphics.getHeight() - Gdx.input.getY();
 	
 		            if (marsSprite.getBoundingRectangle().contains(x, y)) {
-		                game.setScreen(new solarview(game));
+		                game.setScreen(new solarview(game, location));
 		            }
 		        }
 				break;
@@ -358,7 +358,7 @@ public class InfoScreen implements Screen {
 		            int y = Gdx.graphics.getHeight() - Gdx.input.getY();
 	
 		            if (jupiterSprite.getBoundingRectangle().contains(x, y)) {
-		                game.setScreen(new solarview(game));
+		                game.setScreen(new solarview(game, location));
 		            }
 		        }
 				break;
@@ -380,7 +380,7 @@ public class InfoScreen implements Screen {
 		            int y = Gdx.graphics.getHeight() - Gdx.input.getY();
 	
 		            if (saturnSprite.getBoundingRectangle().contains(x, y)) {
-		                game.setScreen(new solarview(game));
+		                game.setScreen(new solarview(game, location));
 		            }
 		        }
 				break;
@@ -402,7 +402,7 @@ public class InfoScreen implements Screen {
 		            int y = Gdx.graphics.getHeight() - Gdx.input.getY();
 	
 		            if (uranusSprite.getBoundingRectangle().contains(x, y)) {
-		                game.setScreen(new solarview(game));
+		                game.setScreen(new solarview(game, location));
 		            }
 		        }
 				break;
@@ -424,7 +424,7 @@ public class InfoScreen implements Screen {
 		            int y = Gdx.graphics.getHeight() - Gdx.input.getY();
 	
 		            if (neptuneSprite.getBoundingRectangle().contains(x, y)) {
-		                game.setScreen(new solarview(game));
+		                game.setScreen(new solarview(game, location));
 		            }
 		        }
 				break;

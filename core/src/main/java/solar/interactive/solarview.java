@@ -60,6 +60,12 @@ public class solarview implements Screen {
     private Location location;
     private final SolarGame game;
   
+    public solarview(SolarGame game, Location location)
+    {
+    	this.game = game;
+    	this.location = location;
+    }
+    
     public solarview(SolarGame game)
     {
     	this.game = game;
