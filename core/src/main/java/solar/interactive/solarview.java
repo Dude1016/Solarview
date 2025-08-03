@@ -28,7 +28,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import models.Location;
 
 
-/** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
+
 public class solarview implements Screen {
     private SpriteBatch batch;
     private int zoomLevel = 0;

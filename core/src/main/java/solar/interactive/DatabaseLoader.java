@@ -107,7 +107,7 @@ public class DatabaseLoader {
 
              Connection conn = DriverManager.getConnection(url, userDb, password);
 
-             // Example SQL; change column names to match your table
+             
              String sql = "INSERT INTO location (type, user_name) VALUES (?, ?)";
 
              java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
